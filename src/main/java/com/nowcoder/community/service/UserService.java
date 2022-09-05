@@ -6,7 +6,7 @@ import com.nowcoder.community.entity.LoginTicket;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.CommunityUtil;
-import com.nowcoder.community.util.MailClient;
+//import com.nowcoder.community.util.MailClient;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,8 +25,8 @@ public class UserService implements CommunityConstant {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private MailClient mailClient;
+//    @Autowired
+//    private MailClient mailClient;
 
     @Autowired
     private TemplateEngine templateEngine;
@@ -88,14 +88,14 @@ public class UserService implements CommunityConstant {
         user.setCreateTime(new Date());
         userMapper.insertUser(user);
 
-        // 激活邮件
-        Context context = new Context();
-        context.setVariable("email", user.getEmail());
-        // http://localhost:8080/community/activation/101/code
-        String url = domain + contextPath + "/activation/" + user.getId() + "/" + user.getActivationCode();
-        context.setVariable("url", url);
-        String content = templateEngine.process("/mail/activation", context);
-        mailClient.sendMail(user.getEmail(), "激活账号", content);
+//        // 激活邮件
+//        Context context = new Context();
+//        context.setVariable("email", user.getEmail());
+//        // http://localhost:8080/community/activation/101/code
+//        String url = domain + contextPath + "/activation/" + user.getId() + "/" + user.getActivationCode();
+//        context.setVariable("url", url);
+//        String content = templateEngine.process("/mail/activation", context);
+//        mailClient.sendMail(user.getEmail(), "激活账号", content);
 
         return map;
     }
